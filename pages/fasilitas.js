@@ -8,7 +8,7 @@ function Fasilitas() {
     useEffect(() => {
         async function fetchData() {
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/facility');
+            let result = await fetch(process.env.API_URL + 'facility');
             result = await result.json();
             setFasilitas(result);
             (document.getElementById('preloader')) && document.getElementById('preloader').remove();

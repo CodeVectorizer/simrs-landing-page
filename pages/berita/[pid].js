@@ -14,7 +14,7 @@ function Berita() {
         pid && fetchData();
     }, [pid])
     async function fetchData() {
-        let result = await fetch(`http://127.0.0.1:8000/api/v1/post/${pid}`);
+        let result = await fetch(`process.env.API_URL + 'post/${pid}`);
         result = await result.json();
         setPost(result);
         (document.getElementById('preloader')) && document.getElementById('preloader').remove();
@@ -36,7 +36,7 @@ function Berita() {
                         </div>
                         <div className='container'>
                             <div className='row py-4'>
-                                <img src={post.image} layout='fill' />
+                                <Image src={'/' + post.image} layout='fill' />
                                 <div className='news-content'>
                                     <div dangerouslySetInnerHTML={{ __html: post.content }} />
                                 </div>

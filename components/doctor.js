@@ -1,6 +1,9 @@
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 
 function Doctor(props) {
+    // const src = `${API}/user/photo/${blog.postedBy.username}`;
+
     return (
         <section id="doctors" className="doctors">
             <div className="container">
@@ -22,7 +25,7 @@ function Doctor(props) {
                                         {item.avatar === null ?
                                             <img src="assets/img/doctors/doctors-1.jpg" className="img-fluid" alt="" />
                                             :
-                                            <img src={item.avatar} className="img-fluid" alt="" />
+                                            <Image src={'/' + item.avatar} width={60} height={60} className="img-fluid" alt="" />
                                         }
                                     </div>
                                     <div className="member-info">

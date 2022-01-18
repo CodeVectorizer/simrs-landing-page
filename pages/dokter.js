@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import Master from '../components/master';
 
@@ -6,7 +7,7 @@ function Dokter() {
     useEffect(() => {
         async function fetchData() {
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/doctor');
+            let result = await fetch(process.env.API_URL + 'doctor');
             result = await result.json();
             setdoctors(result);
             (document.getElementById('preloader')) && document.getElementById('preloader').remove();
@@ -39,9 +40,9 @@ function Dokter() {
                                         <div className="member d-flex align-items-start">
                                             <div className="pic">
                                                 {item.avatar === null ?
-                                                    <img src="assets/img/doctors/doctors-1.jpg" className="img-fluid" alt="" />
+                                                    <Image src={'assets/img/doctors/doctors-1.jpg'} width={60} height={60} loader={() => item.image} className="img-fluid" alt="" />
                                                     :
-                                                    <img src={item.avatar} className="img-fluid" alt="" />
+                                                    <Image src={item.avatar} loader={() => item.image} className="img-fluid" alt="" />
                                                 }
                                             </div>
                                             <div className="member-info">

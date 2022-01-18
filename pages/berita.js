@@ -9,7 +9,7 @@ function Berita() {
     useEffect(() => {
         async function fetchData() {
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/post');
+            let result = await fetch(process.env.API_URL + 'post');
             result = await result.json();
             setPost(result);
             (document.getElementById('preloader')) && document.getElementById('preloader').remove();
@@ -36,12 +36,12 @@ function Berita() {
                         {post !== null ?
                             post.map(item => {
                                 return (
-                                    <div class="row py-4">
-                                        <div class="col-lg-2 text-center order-2 order-lg-1">
+                                    <div className="row py-4" key={item.id}>
+                                        <div className="col-lg-2 text-center order-2 order-lg-1">
                                             {/* <Image src={item.image} height="100" width="100" /> */}
-                                            <Image loader={() => item.image} src={item.image} width={500} height={500} />
+                                            <Image loader={() => '/' + item.image} src={'/' + item.image} width={500} height={500} />
                                         </div>
-                                        <div class="col-lg-8 details order-1 order-lg-2">
+                                        <div className="col-lg-8 details order-1 order-lg-2">
                                             <h3>{item.title.length < 30 ? item.title : item.title.substring(0, 40) + '...'}</h3>
                                             <span className='link-category'><Link href={`/category/${item.category.category}`} className="">{item.category.category}</Link></span>
                                             <p>{item.content.substring(50) + '...'}

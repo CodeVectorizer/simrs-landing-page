@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { } from 'react'
 
-function Hero() {
+function Hero({ data }) {
     return (
-
-        <section id="hero" className="d-flex align-items-center">
+        <section section id="hero" className="d-flex align-items-center" >
             <div className="container">
-                <h1>Welcome to Medilab</h1>
-                <h2>We are team of talented designers making websites with Bootstrap</h2>
-                <a href="#about" className="btn-get-started scrollto">Get Started</a>
+                <h1>Selamat Datang di Website {data.name || 'SIMRS'}</h1>
+                <h2>{data.description || 'We are team of talented designers making websites with Bootstrap'}</h2>
+                {/* <a href="#about" className="btn-get-started scrollto">Get Started</a> */}
             </div>
-        </section>
+        </section >
 
     )
 }

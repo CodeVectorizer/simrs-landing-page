@@ -1,20 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Footer from '../components/footer';
 import Header from '../components/header';
 import Topbar from '../components/topbar.';
 import Hero from '../components/hero';
+import Script from 'next/script';
+// import {  } from 'react/cjs/react.production.min';
 
 function Master(props) {
-    return (
+    const [information, setInformation] = useState({
+        name: null,
+        bg_image: null,
+        address: null,
+        location: null,
+        number_phone: null,
+        description: null
+    })
+    useEffect(() => {
+        fecthData();
+        async function fecthData() {
+            let result2 = await fetch(process.env.API_URL + 'information');
+            result2 = await result2.json();
+            setInformation(result2[0]);
+        }
+    }, []);
 
+    // const InformationContext = createContext();
+    return (
         <>
 
             <Head>
                 <meta charSet="utf-8" />
                 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-                <title>Medilab Bootstrap Template - Index</title>
+                <title>{information.name || 'SIMRS'}</title>
                 <meta content="" name="description" />
                 <meta content="" name="keywords" />
 
@@ -41,34 +60,29 @@ function Master(props) {
 
             <div>
 
+                <Topbar data={information} />
 
-                <Topbar />
-
-
-                <Header />
-
-                {/* <Hero /> */}
+                <Header data={information} />
 
                 {props.children}
 
 
-                <Footer />
+                <Footer data={information} />
 
                 <div id="preloader"></div>
                 <a href="#" className="back-to-top d-flex align-items-center justify-content-center"><i className="bi bi-arrow-up-short"></i></a>
 
 
-                <script src="/assets/vendor/purecounter/purecounter.js"></script>
-                <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-                <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-                <script src="/assets/vendor/php-email-form/validate.js"></script>
+                <Script src="/assets/vendor/purecounter/purecounter.js"></Script>
+                <Script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></Script>
+                <Script src="/assets/vendor/glightbox/js/glightbox.min.js"></Script>
+                <Script src="/assets/vendor/swiper/swiper-bundle.min.js"></Script>
+                <Script src="/assets/vendor/php-email-form/validate.js"></Script>
 
 
-                <script src="/assets/js/main.js"></script>
+                <Script src="/assets/js/main.js"></Script>
 
             </div>
-
         </>
 
     )

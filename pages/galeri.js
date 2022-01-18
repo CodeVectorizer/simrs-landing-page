@@ -8,7 +8,7 @@ function Galeri() {
     useEffect(() => {
         async function fetchData() {
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/gallery');
+            let result = await fetch(process.env.API_URL + 'gallery');
             result = await result.json();
             setGallery(result);
             (document.getElementById('preloader')) && document.getElementById('preloader').remove();

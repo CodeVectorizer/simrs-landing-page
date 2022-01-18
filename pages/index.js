@@ -1,33 +1,56 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Doctor from '../components/doctor';
 import Faq from '../components/faq';
 import Gallery from '../components/gallery';
 import Hero from '../components/hero';
 import Master from '../components/master';
 import Speciality from '../components/speciality';
+import Testimonial from '../components/testimonial';
 
 
 function Test() {
     const [doctors, setDoctors] = useState(null)
     const [gallery, setGallery] = useState(null)
     const [faq, setFaq] = useState(null)
+    const [testimonial, setTestimonial] = useState(null)
+
+
+    const [information, setInformation] = useState({
+        name: null,
+        bg_image: null,
+        address: null,
+        location: null,
+        number_phone: null,
+        description: null
+    })
+
+
     useEffect(() => {
         async function fecthData() {
-            let result2 = await fetch('http://127.0.0.1:8000/api/v1/doctor');
+            let result2 = await fetch(process.env.API_URL + 'doctor');
             result2 = await result2.json();
             setDoctors(result2);
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/gallery');
+            let result = await fetch(process.env.API_URL + 'gallery');
             result = await result.json();
             setGallery(result);
 
-            // let result3 = await fetch('http://127.0.0.1:8000/api/v1/gallery');
+            // let result3 = await fetch(process.env.API_URL+'gallery');
             // result3 = await result3.json();
             // setGallery(result3);
 
-            let result4 = await fetch('http://127.0.0.1:8000/api/v1/faq');
+            let result4 = await fetch(process.env.API_URL + 'faq');
             result4 = await result4.json();
             setFaq(result4);
+
+            let result5 = await fetch(process.env.API_URL + 'testimonial');
+            result5 = await result5.json();
+            setTestimonial(result5);
+
+            let result10 = await fetch(process.env.API_URL + 'information');
+            result10 = await result10.json();
+            setInformation(result10[0]);
+
             (document.getElementById('preloader')) && document.getElementById('preloader').remove();
 
             const glightbox = GLightbox({
@@ -72,9 +95,10 @@ function Test() {
     }, [])
     return (
         <Master>
-            <Hero />
             <main id="main">
-                <section id="why-us" className="why-us">
+                <Hero data={information} />
+
+                {/* <section id="why-us" className="why-us">
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-4 d-flex align-items-stretch">
@@ -155,7 +179,7 @@ function Test() {
                         </div>
 
                     </div>
-                </section>
+                </section> */}
 
 
                 <section id="counts" className="counts">
@@ -201,7 +225,7 @@ function Test() {
                 </section>
 
 
-                <section id="services" className="services">
+                {/* <section id="services" className="services">
                     <div className="container">
 
                         <div className="section-title">
@@ -325,9 +349,9 @@ function Test() {
                         </form>
 
                     </div>
-                </section>
+                </section> */}
 
-                <Speciality />
+                {/* <Speciality /> */}
 
 
                 <Doctor data={doctors} />
@@ -339,95 +363,16 @@ function Test() {
                     'null'
                 }
 
-                <section id="testimonials" className="testimonials">
-                    <div className="container">
 
-                        <div className="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-                            <div className="swiper-wrapper">
+                {testimonial !== null
+                    ?
+                    <Testimonial data={testimonial} title="Testimonial" desc="descrioption" />
+                    :
+                    'null'
+                }
 
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
-                                            <img src="assets/img/testimonials/testimonials-3.jpg" className="testimonial-img" alt="" />
 
-                                            <h3>Saul Goodman</h3>
-                                            <h4>Ceo &amp; Founder</h4>
-                                            <p>
-                                                <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                                                <i className="bx bxs-quote-alt-right quote-icon-right"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
-                                            <img src="assets/img/testimonials/testimonials-2.jpg" className="testimonial-img" alt="" />
-                                            <h3>Sara Wilsson</h3>
-                                            <h4>Designer</h4>
-                                            <p>
-                                                <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                                                <i className="bx bxs-quote-alt-right quote-icon-right"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
-                                            <img src="assets/img/testimonials/testimonials-3.jpg" className="testimonial-img" alt="" />
-                                            <h3>Jena Karlis</h3>
-                                            <h4>Store Owner</h4>
-                                            <p>
-                                                <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                                                <i className="bx bxs-quote-alt-right quote-icon-right"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
-                                            <img src="assets/img/testimonials/testimonials-3.jpg" className="testimonial-img" alt="" />
-
-                                            <h3>Matt Brandon</h3>
-                                            <h4>Freelancer</h4>
-                                            <p>
-                                                <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                                                <i className="bx bxs-quote-alt-right quote-icon-right"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="swiper-slide">
-                                    <div className="testimonial-wrap">
-                                        <div className="testimonial-item">
-                                            <img src="assets/img/testimonials/testimonials-5.jpg" className="testimonial-img" alt="" />
-                                            <h3>John Larson</h3>
-                                            <h4>Entrepreneur</h4>
-                                            <p>
-                                                <i className="bx bxs-quote-alt-left quote-icon-left"></i>
-                                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                                                <i className="bx bxs-quote-alt-right quote-icon-right"></i>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div className="swiper-pagination"></div>
-                        </div>
-
-                    </div>
-                </section>
 
 
 
@@ -435,13 +380,13 @@ function Test() {
                     <div className="container">
 
                         <div className="section-title">
-                            <h2>Contact</h2>
-                            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+                            <h2>Kontak</h2>
+                            {/* <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> */}
                         </div>
                     </div>
 
                     <div>
-                        <iframe style={{ border: '0', width: '100%', height: '350px', }} src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.317989934336!2d113.5007251!3d-7.7560592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7022278787fc74af!2zN8KwNDUnMjEuOCJTIDExM8KwMzAnMDIuNiJF!5e0!3m2!1sen!2sid!4v1640411894774!5m2!1sen!2sid" loading="lazy" frameBorder="0" allowFullScreen></iframe>
+                        <iframe style={{ border: '0', width: '100%', height: '350px', }} src={information.location || ''} loading="lazy" frameBorder="0" allowFullScreen></iframe>
                     </div>
 
                     <div className="container">
@@ -452,19 +397,19 @@ function Test() {
                                     <div className="address">
                                         <i className="bi bi-geo-alt"></i>
                                         <h4>Location:</h4>
-                                        <p>A108 Adam Street, New York, NY 535022</p>
+                                        <p>{information.address || ''}</p>
                                     </div>
 
                                     <div className="email">
                                         <i className="bi bi-envelope"></i>
                                         <h4>Email:</h4>
-                                        <p>info@example.com</p>
+                                        <p>{information.email || ''}</p>
                                     </div>
 
                                     <div className="phone">
                                         <i className="bi bi-phone"></i>
                                         <h4>Call:</h4>
-                                        <p>+1 5589 55488 55s</p>
+                                        <p>{information.number_phone || ''}</p>
                                     </div>
 
                                 </div>

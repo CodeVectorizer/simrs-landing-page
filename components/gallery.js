@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect } from 'react'
 
 function Gallery(props) {
@@ -34,7 +35,7 @@ function Gallery(props) {
                                 <div className="col-lg-3 col-md-4 text-center" key={item.id}>
                                     <div className="gallery-item">
                                         <a href={item.image} className="galelry-lightbox">
-                                            <img src={item.image} alt="" className="img-fluid" />
+                                            <Image src={'/' + item.image} width={60} height={60} alt="" className="img-fluid" />
                                         </a>
                                         <p>{item.description}</p>
                                     </div>

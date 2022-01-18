@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Footer() {
+function Footer({ data }) {
     return (
 
         <footer id="footer">
@@ -9,18 +9,16 @@ function Footer() {
                 <div className="container">
                     <div className="row">
 
-                        <div className="col-lg-3 col-md-6 footer-contact">
-                            <h3>Medilab</h3>
+                        <div className="col-lg-4 col-md-6 footer-contact">
+                            <h3>{data.name || 'SIMRS'}</h3>
                             <p>
-                                A108 Adam Street <br />
-                                New York, NY 535022<br />
-                                United States <br /><br />
-                                <strong>Phone:</strong> +1 5589 55488 55<br />
-                                <strong>Email:</strong> info@example.com<br />
+                                {data.address || 'Indonesia'}<br />
+                                <strong>Phone:</strong> {data.number_phone || '+62-9999999'}<br />
+                                <strong>Email:</strong> {data.email || 'simrs@email.com'}<br />
                             </p>
                         </div>
 
-                        <div className="col-lg-2 col-md-6 footer-links">
+                        <div className="col-lg-4 col-md-6 footer-links">
                             <h4>Useful Links</h4>
                             <ul>
                                 <li><i className="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -31,7 +29,7 @@ function Footer() {
                             </ul>
                         </div>
 
-                        <div className="col-lg-3 col-md-6 footer-links">
+                        <div className="col-lg-4 col-md-6 footer-links">
                             <h4>Our Services</h4>
                             <ul>
                                 <li><i className="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
@@ -42,13 +40,13 @@ function Footer() {
                             </ul>
                         </div>
 
-                        <div className="col-lg-4 col-md-6 footer-newsletter">
+                        {/* <div className="col-lg-4 col-md-6 footer-newsletter">
                             <h4>Join Our Newsletter</h4>
                             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                             <form action="" method="post">
                                 <input type="email" name="email" /><input type="submit" value="Subscribe" />
                             </form>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
@@ -58,14 +56,14 @@ function Footer() {
 
                 <div className="me-md-auto text-center text-md-start">
                     <div className="copyright">
-                        &copy; Copyright <strong><span>Medilab</span></strong>. All Rights Reserved
+                        &copy; Copyright <strong><span>{data.name || 'SIMRS'}</span></strong>. All Rights Reserved
                     </div>
                     <div className="credits">
 
 
 
 
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        Designed by <a href="https://">Smiling Dev</a>
                     </div>
                 </div>
                 <div className="social-links text-center text-md-right pt-3 pt-md-0">

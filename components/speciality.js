@@ -7,7 +7,7 @@ function Speciality() {
     useEffect(() => {
         async function fetchData() {
 
-            let result = await fetch('http://127.0.0.1:8000/api/v1/speciality');
+            let result = await fetch(process.env.API_URL + 'speciality');
             result = await result.json();
             setSpeciliaty(result);
         }
@@ -33,7 +33,7 @@ function Speciality() {
                                     speciality.map((item, index) => {
 
                                         return (
-                                            <li className="nav-item">
+                                            <li className="nav-item" key={index}>
                                                 <a className={`nav-link ${index === 0 && 'active show'}`} show data-bs-toggle="tab" href={`#tab-${index}`}>{item.speciality}</a>
                                             </li>
 
@@ -52,7 +52,7 @@ function Speciality() {
                                     ?
                                     speciality.map((item, index) => {
                                         return (
-                                            <div className={`tab-pane ${index === 0 && 'active show'}`} id={`tab-${index}`}>
+                                            <div className={`tab-pane ${index === 0 && 'active show'}`} id={`tab-${index}`} key={index}>
                                                 <div className="row">
                                                     <div className="col-lg-12 details order-2 order-lg-1">
                                                         <h3>{item.speciality}</h3>
