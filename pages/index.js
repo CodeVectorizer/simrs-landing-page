@@ -99,7 +99,7 @@ function Test() {
                 <section id="hero" className="d-flex align-items-center" >
                     <div className="container">
                         <h1>Selamat Datang di Website RS Soebandi</h1>
-                        <h2>'Rumah Sakit Soebandi Jember'</h2>
+                        <h2>Rumah Sakit Soebandi Jember</h2>
                     </div>
                 </section >
 
