@@ -16,6 +16,7 @@ function Header({ data }) {
                             <li><Link className="nav-link scrollto" href="/mitra">Mitra</Link></li>
                             <li><Link className="nav-link scrollto" href="/fasilitas">Fasilitas</Link></li>
                             <li><Link className="nav-link scrollto" href="/dokter">Doctors</Link></li>
+                            <li><Link className="nav-link scrollto" href="/berita">Berita</Link></li>
                             {/* <li><a className="nav-link scrollto" href="/#contact">Contact</a></li> */}
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle"></i>

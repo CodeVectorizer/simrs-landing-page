@@ -39,7 +39,7 @@ function Berita() {
                                     <div className="row py-4" key={item.id}>
                                         <div className="col-lg-2 text-center order-2 order-lg-1">
                                             {/* <Image src={item.image} height="100" width="100" /> */}
-                                            <Image loader={() => '/' + item.image} src={'/' + item.image} width={500} height={500} />
+                                            <img src={item.image} width={100} height={100} />
                                         </div>
                                         <div className="col-lg-8 details order-1 order-lg-2">
                                             <h3>{item.title.length < 30 ? item.title : item.title.substring(0, 40) + '...'}</h3>

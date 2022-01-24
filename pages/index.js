@@ -16,12 +16,12 @@ function Test() {
 
 
     const [information, setInformation] = useState({
-        name: null,
-        bg_image: null,
-        address: null,
-        location: null,
-        number_phone: null,
-        description: null
+        name: 'Rumah Sakit Soebandi',
+        bg_image: '',
+        address: 'Jember Regency',
+        location: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.513082013941!2d113.71329061438058!3d-8.150947583898898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd695ab770e0f3f%3A0xa6bf9ddece889812!2sRumah%20Sakit%20Umum%20Daerah%20(RSUD)%20dr.%20Soebandi!5e0!3m2!1sen!2sid!4v1643000405890!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>',
+        number_phone: '08513123123123',
+        description: 'DrSoebandi Jember'
     })
 
 
@@ -96,7 +96,12 @@ function Test() {
     return (
         <Master>
             <main id="main">
-                <Hero data={information} />
+                <section id="hero" className="d-flex align-items-center" >
+                    <div className="container">
+                        <h1>Selamat Datang di Website RS Soebandi</h1>
+                        <h2>'Rumah Sakit Soebandi Jember'</h2>
+                    </div>
+                </section >
 
                 {/* <section id="why-us" className="why-us">
                     <div className="container">
@@ -385,9 +390,9 @@ function Test() {
                         </div>
                     </div>
 
-                    <div>
-                        <iframe style={{ border: '0', width: '100%', height: '350px', }} src={information.location || ''} loading="lazy" frameBorder="0" allowFullScreen></iframe>
-                    </div>
+                    {/* <div>
+                        <iframe style={{ border: '0', width: '100%', height: '350px', }} src='<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.513082013941!2d113.71329061438058!3d-8.150947583898898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd695ab770e0f3f%3A0xa6bf9ddece889812!2sRumah%20Sakit%20Umum%20Daerah%20(RSUD)%20dr.%20Soebandi!5e0!3m2!1sen!2sid!4v1643000405890!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>' loading="lazy" frameBorder="0" allowFullScreen></iframe>
+                    </div> */}
 
                     <div className="container">
                         <div className="row mt-5">

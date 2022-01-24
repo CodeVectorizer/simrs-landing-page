@@ -40,9 +40,9 @@ function Dokter() {
                                         <div className="member d-flex align-items-start">
                                             <div className="pic">
                                                 {item.avatar === null ?
-                                                    <Image src={'assets/img/doctors/doctors-1.jpg'} width={60} height={60} loader={() => item.image} className="img-fluid" alt="" />
+                                                    <img src={'assets/img/doctors/doctors-1.jpg'} width={60} height={60} className="img-fluid" alt="" />
                                                     :
-                                                    <Image src={item.avatar} loader={() => item.image} className="img-fluid" alt="" />
+                                                    <img src={item.avatar} className="img-fluid" alt="" width={60} height={60} />
                                                 }
                                             </div>
                                             <div className="member-info">

@@ -17,7 +17,6 @@ function Fasilitas() {
         fetchData();
         // document.getElementById('preloader').remove();
 
-
     }, [])
     return (
         <Master>
